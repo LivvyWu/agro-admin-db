@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../head.ejs %>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <% include ../navigation.ejs %>
+    <% include ../sidebar.ejs %>
+
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                農場列表
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-dashboard"></i> 首頁</a></li>
+                <li><a href="/">農場</a></li>
+                <li><a href="/farm">農場列表</a></li>
+            </ol>
+        </section>
+
+        <section class="content">
+            <div class="nav-tabs-custom">
+                <!--<ul class="nav nav-tabs">-->
+                <!--<li class="active"><a href="#tab_1" data-toggle="tab">全部</a></li>-->
+                <!--<li><a href="#tab_2" data-toggle="tab">北部</a></li>-->
+                <!--<li><a href="#tab_3" data-toggle="tab">中部</a></li>-->
+                <!--<li><a href="#tab_4" data-toggle="tab">南部</a></li>-->
+                <!--<li><a href="#tab_5" data-toggle="tab">東部</a></li>-->
+                <!--</ul>-->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab_1">
+                        <div class="row">
+                                <%  { %>
+                                <% include profile.ejs %>
+                                <% } %>
+                        </div>
+                        總共 <%=farms.length%> 個農場
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<% include ../includejs.ejs %>
+</body>
+</html>

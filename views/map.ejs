@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML5</title>
+        
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=650, user-scalable=yes">
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script src="/plugins/jQuery/jquery-2.2.3.min.js"></script>
+
+        
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        #mapcanvas {
+            height: 100%;
+            fill: red;
+            stroke-width: 3;
+            fill-opacity: 0.6
+
+        }
+    </style>
+
+        
+    <script>
+        var geoJsonObject;
+        var thejson;
+        $(document).ready(function () {
+            function initialize() {
+                // Create an array of styles.
+
+            }
+            var styles =
+                    [
+                        {
+                            "elementType": "geometry",
+                            "stylers": [
+                                {
+                                    "color": "#212121"
+                                }
+                            ]
+                        },
+                        {
+                            "elementType": "labels.icon",
+                            "stylers": [
+                                {
+                                    "visibility": "off"
+                                }
+                            ]
+                        },
+                        {
+                            "elementType": "labels.text.fill",
+                            "stylers": [
+                                {
+                                    "color": "#757575"
+                                }
+                            ]
+                        },
+                        {
+                            "elementType": "labels.text.stroke",
+                            "stylers": [
+                                {
+                                    "color": "#212121"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "administrative",
+                            "elementType": "geometry",
+                            "stylers": [
+                                {
+                                    "color": "#757575"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "administrative.country",
+                            "elementType": "labels.text.fill",
+                            "stylers": [
+                                {
+                                    "color": "#9e9e9e"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "administrative.land_parcel",
+                            "stylers": [
+                                {
+                                    "visibility": "off"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "administrative.locality",
+                            "elementType": "labels.text.fill",
+                            "stylers": [
+                                {
+                                    "color": "#bdbdbd"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "poi",
+                            "elementType": "labels.text.fill",
+                            "stylers": [
+                                {
+                                    "color": "#757575"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "poi.park",
+                            "elementType": "geometry",
+                            "stylers": [
+                                {
+                                    "color": "#181818"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "poi.park",
+                            "elementType": "labels.text.fill",
+                            "stylers": [
+                                {
+                                    "color": "#616161"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "poi.park",
+                            "elementType": "labels.text.stroke",
+                            "stylers": [
+                                {
+                                    "color": "#1b1b1b"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "road",
+                            "elementType": "geometry.fill",
+                            "stylers": [
+                                {
+                                    "color": "#2c2c2c"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "road",
+                            "elementType": "labels.text.fill",
+                            "stylers": [
+                                {
+                                    "color": "#8a8a8a"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "road.arterial",
+                            "elementType": "geometry",
+                            "stylers": [
+                                {
+                                    "color": "#373737"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "road.highway",
+                            "elementType": "geometry",
+                            "stylers": [
+                                {
+                                    "color": "#3c3c3c"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "road.highway.controlled_access",
+                            "elementType": "geometry",
+                            "stylers": [
+                                {
+                                    "color": "#4e4e4e"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "road.local",
+                            "elementType": "labels.text.fill",
+                            "stylers": [
+                                {
+                                    "color": "#616161"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "transit",
+                            "elementType": "labels.text.fill",
+                            "stylers": [
+                                {
+                                    "color": "#757575"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "water",
+                            "elementType": "geometry",
+                            "stylers": [
+                                {
+                                    "color": "#000000"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "water",
+                            "elementType": "labels.text.fill",
+                            "stylers": [
+                                {
+                                    "color": "#3d3d3d"
+                                }
+                            ]
+                        }
+                    ]
+//             Create a new StyledMapType object, passing it the array of styles,
+//             as well as the name to be displayed on the map type control.
+            var styledMap = new google.maps.StyledMapType(styles,
+                    {name: "Styled Map"});
+            var mapOptions = {
+                zoom: 10,
+                center: new google.maps.LatLng(23.857883, 120.978975),
+                mapTypeControlOptions: {
+                    mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+                }
+            };
+            map = new google.maps.Map($('#mapcanvas')[0], mapOptions);
+            //county.json is a topojson file
+
+            //Associate the styled map with the MapTypeId and set it to display.
+            map.mapTypes.set('map_style', styledMap);
+            map.setMapTypeId('map_style');
+
+            $.getJSON("tw.json", function (data) {
+                map.data.addGeoJson(data);
+            });
+            // Color each letter gray. Change the color when the isColorful property
+            // is set to true.
+            map.data.setStyle(function (feature) {
+                var color = 'gray';
+                if (feature.getProperty('isColorful')) {
+                    feature.setProperty('color', 'red');
+                    color = feature.getProperty('color');
+                    feature.setProperty('zIndex', 1000);
+                }
+                return /** @type {google.maps.Data.StyleOptions} */({
+                    fillColor: color,
+                    strokeColor: color,
+                    strokeWeight: 2,
+                    draggable: true
+                });
+            });
+
+            // When the user clicks, set 'isColorful', changing the color of the letters.
+            map.data.addListener('click', function (event) {
+                if (event.feature.getProperty('isColorful')) {
+                    event.feature.setProperty('isColorful', false);
+                } else {
+                    event.feature.setProperty('isColorful', true);
+                }
+            });
+
+            // When the user hovers, tempt them to click by outlining the letters.
+            // Call revertStyle() to remove all overrides. This will use the style rules
+            // defined in the function passed to setStyle()
+            map.data.addListener('mouseover', function (event) {
+                map.data.revertStyle();
+                map.data.overrideStyle(event.feature, {strokeWeight: 8});
+            });
+
+            map.data.addListener('mouseout', function (event) {
+                map.data.revertStyle();
+            });
+        });//end document ready
+    </script>
+
+</head>
+<body>
+<div id="mapcanvas">
+</div>
+
+
+</body>
+
+
+</html>

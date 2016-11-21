@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../head.ejs%>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <% include ../navigation.ejs%>
+    <% include ../sidebar.ejs%>
+
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                示警紀錄
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-dashboard"></i> 首頁</a></li>
+                <li class="active">示警紀錄</li>
+            </ol>
+        </section>
+
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="example1" class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>異常種類</th>
+                                    <th>農場</th>
+                                    <th>異常環境參數種類/說明</th>
+                                    <th>建立日期</th>
+                                    <th>處理日期</th>
+                                    <th>處理狀況</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>溫度過高</td>
+                                    <td><a href="/farm/info/0">中和農場 2場</a></td>
+                                    <td>異常環境參數種類/說明</td>
+                                    <td>2016/10/31</td>
+                                    <td>2016/11/1</td>
+                                    <td>未處理<a href="#"><span class="label label-danger pull-right">處理</span></a></td>
+                                </tr>
+                                <tr>
+                                    <td>溫度過高</td>
+                                    <td><a href="/farm/info/0">中和農場 2場</a></td>
+                                    <td>異常環境參數種類/說明</td>
+                                    <td>2016/10/31</td>
+                                    <td>2016/11/1</td>
+                                    <td>未處理</td>
+                                </tr>
+                                <tr>
+                                    <td>溫度過高</td>
+                                    <td><a href="/farm/info/0">中和農場 2場</a></td>
+                                    <td>異常環境參數種類/說明</td>
+                                    <td>2016/10/31</td>
+                                    <td>2016/11/1</td>
+                                    <td><span class="label label-success">已處理</span></td>
+                                </tr>
+                                <tr>
+                                    <td>溫度過高</td>
+                                    <td><a href="/farm/info/0">中和農場 2場</a></td>
+                                    <td>異常環境參數種類/說明</td>
+                                    <td>2016/10/31</td>
+                                    <td>2016/11/1</td>
+                                    <td><span class="label label-success">已處理</span></td>
+                                </tr>
+                                <tr>
+                                    <td>溫度過高</td>
+                                    <td><a href="/farm/info/0">中和農場 2場</a></td>
+                                    <td>異常環境參數種類/說明</td>
+                                    <td>2016/10/31</td>
+                                    <td>2016/11/1</td>
+                                    <td><span class="label label-success">已處理</span></td>
+                                </tr>
+                                <tr>
+                                    <td>溫度過高</td>
+                                    <td><a href="/farm/info/0">中和農場 2場</a></td>
+                                    <td>異常環境參數種類/說明</td>
+                                    <td>2016/10/31</td>
+                                    <td>2016/11/1</td>
+                                    <td><span class="label label-success">已處理</span></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+        </section>
+
+    </div>
+</div>
+
+<% include ../includejs1.ejs %>
+<!-- DataTables -->
+<script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/plugins/datatables/dataTables.bootstrap.min.js"></script>
+
+</body>
+<script>
+
+    $(function () {
+        $('#example1').DataTable({
+            "paging": true,
+            "pagingType": "simple",
+            "lengthChange": true,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "oLanguage": {
+                "sLengthMenu": "顯示 _MENU_ 筆記錄",
+                "sZeroRecords": "無符合資料",
+                "sInfo": "目前記錄：_START_ 至 _END_, 總筆數：_TOTAL_",
+                "oPaginate": {
+                    "sPrevious": "上頁",
+                    "sNext": "下頁"
+                }
+            }
+        });
+    });
+
+
+
+</script>
+</html>

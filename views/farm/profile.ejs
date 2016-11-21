@@ -1,0 +1,33 @@
+<% farms.forEach(function (farm) { %>
+<div class="col-md-4">
+    <!-- Profile Image -->
+    <div class="box box-primary">
+        <div class="box-body box-profile">
+            <img class="profile-user-img img-responsive" src="/img/farm-profile/profile1.jpeg" alt="User profile picture">
+
+            <h3 class="profile-username text-center"><%= farm.field_name%></h3>
+
+            <!--<p class="text-muted text-center"><a href="">地圖上查看</a></p>-->
+
+            <ul class="list-group list-group-unbordered">
+                <!--<li class="list-group-item">-->
+                    <!--<b>地點</b> <p class="pull-right">台中市</p>-->
+                <!--</li>-->
+                <li class="list-group-item">
+                    <b>面積(公頃)</b> <p class="pull-right"><%= farm.field_area %></p>
+                </li>
+                <li class="list-group-item">
+                    <b>栽種作物</b> <p class="pull-right"><%= farm.memo.split(',')[1] %></p>
+                </li>
+                <li class="list-group-item">
+                    <b>溫網室概況</b> <p class="pull-right"><%= farm.memo.split(',')[0] %></p>
+                </li>
+
+            </ul>
+            <a href="/farm/info/<%= farm.field_id %>" class="btn btn-primary btn-block"><b>前往查看</b></a>
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+</div>
+<% })%>

@@ -1,0 +1,60 @@
+a.small-box-footer {
+    color: #fff;
+}
+
+.connectedSortable .inner {
+    box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+}
+
+.InAirTem .icon,
+.InAirTem h1,
+.InAirTem h4,
+.InSoilTemperature .icon,
+.InSoilTemperature h1,
+.InSoilTemperature h4 {
+    color: #0099e5;
+}
+.InAirTem .small-box > div.text-center,
+.InSoilTemperature .small-box > div.text-center{
+    background-color: #0099e5;
+}
+
+.InAirHumidity .icon,
+.InAirHumidity h1,
+.InAirHumidity h4,
+.InSoilHumidity .icon,
+.InSoilHumidity h1,
+.InSoilHumidity h4 {
+    color: #2CC9A2;
+}
+.InAirHumidity .small-box > div.text-center,
+.InSoilHumidity .small-box > div.text-center{
+    background-color: #2CC9A2;
+}
+
+.InAirIllumination .icon,
+.InAirIllumination h1,
+.InAirIllumination h4,
+.InSoilEC .icon,
+.InSoilEC h1,
+.InSoilEC h4 {
+    color: #F3B51A ;
+}
+.InAirIllumination .small-box > div.text-center,
+.InSoilEC .small-box > div.text-center{
+    background-color: #F3B51A ;
+}
+
+.InAirCO2 .icon,
+.InAirCO2 h1,
+.InAirCO2 h4,
+.InSoilPH .icon,
+.InSoilPH h1,
+.InSoilPH h4 {
+    color: #F5544D;
+}
+.InAirCO2 .small-box > div.text-center,
+.InSoilPH .small-box > div.text-center{
+    background-color: #F5544D ;
+}
+

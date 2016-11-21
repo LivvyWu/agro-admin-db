@@ -1,0 +1,106 @@
+<header class="main-header">
+<a href="/" class="logo">
+    智慧農業4.0 環控網站
+</a>
+<nav class="navbar skin-blue navbar-static-top">
+    <!-- Sidebar toggle button-->
+    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span class="sr-only">Toggle navigation</span>
+    </a>
+
+    <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+
+            <!-- Notifications: style can be found in dropdown.less -->
+            <li class="dropdown notifications-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-bell-o"></i>
+                    <span class="label label-warning">5</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="header">你有5則訊息</li>
+                    <li>
+                        <!-- inner menu: contains the actual data -->
+                        <ul class="menu">
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-users text-aqua"></i> 專家建議 : 一號農場溫度太高，請降溫
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-warning text-yellow"></i> 專家建議 : 二號農場溫度太高，請降溫
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-users text-red"></i> 明天中午要三號農場施肥
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-shopping-cart text-green"></i> 今天下午沒事
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-user text-red"></i> 動物園表示 : 明年有蝗蟲
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="footer"><a href="#">全部展開</a></li>
+                </ul>
+            </li>
+
+            <!-- User Account: style can be found in dropdown.less -->
+            <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <img src="/img/terminal.png" class="user-image" alt="User Image">
+                    <span class="hidden-xs"><%=session.user.account%></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <!-- User image -->
+                    <li class="user-header">
+                        <img src="/img/terminal.png" class="" alt="User Image">
+
+                        <p>
+                            <%=session.user.account%>
+                            <small>2014.5 加入會員</small>
+                        </p>
+                    </li>
+                    <!-- Menu Body -->
+                    <li class="user-body">
+                        <div class="row">
+                            <div class="col-xs-4 text-center">
+                                <a href="#">19個農場</a>
+                            </div>
+                            <div class="col-xs-4 text-center">
+                                <a href="#">49個感應器</a>
+                            </div>
+                            <div class="col-xs-4 text-center">
+                                <a href="#">專長水稻</a>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </li>
+                    <!-- Menu Footer-->
+                    <li class="user-footer">
+                        <div class="pull-left">
+                            <a href="#" class="btn btn-default btn-flat">個人資料</a>
+                        </div>
+                        <div class="pull-right">
+                            <% if(session.islogin){ %>
+                            <a href="/logout" class="btn btn-default btn-flat">登出</a>
+                            <% }else {%>
+                            <a href="/" class="btn btn-default btn-flat">登入</a>
+                            <% } %>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+</header>
