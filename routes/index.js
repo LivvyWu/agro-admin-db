@@ -45,7 +45,7 @@ router.post('/login', function(req, res, next) {
 
       req.session.user = user;
       req.session.islogin = true;
-      res.redirect("/farm");
+      res.redirect("/farm/list");
     }
   });
 });

@@ -66,7 +66,7 @@ var metrics = [
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('farm/list', { title: 'farm' , farms : farms});
+    res.render('farm/list', { title: '農場列表' , farms : farms});
 });
 
 router.get('/info/:field_id', function(req, res, next) {
