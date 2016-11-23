@@ -15,12 +15,8 @@
             margin: 0;
         }
 
-        #mapcanvas {
+        #interactive-1 {
             height: 100%;
-            fill: red;
-            stroke-width: 3;
-            fill-opacity: 0.6
-
         }
     </style>
 
@@ -29,10 +25,6 @@
         var geoJsonObject;
         var thejson;
         $(document).ready(function () {
-            function initialize() {
-                // Create an array of styles.
-
-            }
             var styles =
                     [
                         {
@@ -225,38 +217,74 @@
             var styledMap = new google.maps.StyledMapType(styles,
                     {name: "Styled Map"});
             var mapOptions = {
-                zoom: 10,
-                center: new google.maps.LatLng(23.857883, 120.978975),
-                mapTypeControlOptions: {
-                    mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
-                }
+                zoom: 8,
+                center: new google.maps.LatLng(23.857883, 120.978975)
             };
-            map = new google.maps.Map($('#mapcanvas')[0], mapOptions);
+            infoWindow = new google.maps.InfoWindow({
+                content: ""
+            });
+            map = new google.maps.Map($('#interactive-1')[0], mapOptions);
             //county.json is a topojson file
 
             //Associate the styled map with the MapTypeId and set it to display.
             map.mapTypes.set('map_style', styledMap);
             map.setMapTypeId('map_style');
 
-            $.getJSON("tw.json", function (data) {
-                map.data.addGeoJson(data);
+            //Initialize 2 variable that will take layers
+            var countyLayer = new google.maps.Data();
+            var stateLayer = new google.maps.Data();
+
+            //load the GeoJson files for each layer.
+            countyLayer.loadGeoJson('city.json');
+            stateLayer.loadGeoJson('tw.json');
+            //set the style for each layer.
+            countyLayer.setStyle({
+                strokeColor: 'red',
+                strokeWeight: 3
             });
+            stateLayer.setStyle({
+                strokeColor: 'yellow',
+                strokeOpacity: 0.3,
+                strokeWeight: 1
+            });
+            countyLayer.setMap(map);
+
             // Color each letter gray. Change the color when the isColorful property
             // is set to true.
-            map.data.setStyle(function (feature) {
-                var color = 'gray';
-                if (feature.getProperty('isColorful')) {
-                    feature.setProperty('color', 'red');
-                    color = feature.getProperty('color');
-                    feature.setProperty('zIndex', 1000);
-                }
-                return /** @type {google.maps.Data.StyleOptions} */({
-                    fillColor: color,
-                    strokeColor: color,
-                    strokeWeight: 2,
-                    draggable: true
-                });
+//            map.data.setStyle(function (feature) {
+//                var color = '#0282c2';
+//                if (feature.getProperty('isColorful')) {
+//                    feature.setProperty('color', '#2c2b4c');
+//                    color = feature.getProperty('color');
+//                    feature.setProperty('zIndex', 1000);
+//                }
+//                return /** @type {google.maps.Data.StyleOptions} */({
+//                    fillColor: color,
+//                    strokeColor: color,
+//                    strokeWeight: 2,
+//                    draggable: true
+//                });
+//            });
+
+
+            // Set and apply styling to the stateLayer
+            stateLayer.setStyle(function(feature) {
+                return {
+                    fillColor: getColor(feature.getProperty('COLI')), // call function to get color for state based on the COLI (Cost of Living Index)
+                    fillOpacity: 1,
+                    strokeColor: '#b3b3b3',
+                    strokeWeight: 1,
+                    zIndex: 1
+                };
             });
+            // returns a color based on the value given when the function is called
+            function getColor(coli) {
+                return coli >= 121 ? '#89a844' :
+                    coli > 110 ? '#acd033' :
+                        coli > 102.5 ? '#cbd97c' :
+                            coli > 100 ? '#c2c083' :
+                                '#d1ccad';
+            }
 
             // When the user clicks, set 'isColorful', changing the color of the letters.
             map.data.addListener('click', function (event) {
@@ -272,19 +300,32 @@
             // defined in the function passed to setStyle()
             map.data.addListener('mouseover', function (event) {
                 map.data.revertStyle();
-                map.data.overrideStyle(event.feature, {strokeWeight: 8});
+                map.data.overrideStyle(event.feature, {strokeWeight: 7});
             });
 
             map.data.addListener('mouseout', function (event) {
                 map.data.revertStyle();
             });
+
+            //set the layer to the map
+
+            $('button.county').on('click', function () {
+                stateLayer.setMap(null);
+                countyLayer.setMap(map);
+            })
+            $('button.state').on('click', function () {
+                countyLayer.setMap(null);
+                stateLayer.setMap(map);
+            })
         });//end document ready
     </script>
 
 </head>
 <body>
-<div id="mapcanvas">
-</div>
+<button class="county">縣市</button>
+<button class="state">鄉鎮</button>
+    <section class="interactive-points" id="interactive-1">
+    </section>
 
 
 </body>
