@@ -8,9 +8,9 @@ var sensor = require('../models/sensor');
 
 var metrics = [
   { "itemCd" : "InAirTem", "val" : "25°C", "itemNm" : "空氣溫度" , "icon": "fa fa-thermometer-half", "link" : "datachart/1", "bcolor" : "bg-blue", "bcolor2" : "bg-maroon-active" },
-  { "itemCd" : "InAirHumidity", "val" : "75", "itemNm" : "空氣濕度" , "icon": "fa fa-tint", "link" : "datachart/2", "bcolor" : "bg-olive", "bcolor2" : "bg-maroon-active" },
+  { "itemCd" : "InAirHumidity", "val" : "75%", "itemNm" : "空氣濕度" , "icon": "fa fa-tint", "link" : "datachart/2", "bcolor" : "bg-olive", "bcolor2" : "bg-maroon-active" },
   { "itemCd" : "InAirIllumination", "val" : "40K", "itemNm" : "照度" , "icon": "fa fa-sun-o", "link" : "datachart/1", "bcolor" : "bg-yellow", "bcolor2" : "bg-maroon-active" },
-  { "itemCd" : "InAirCO2", "val" : "25", "itemNm" : "空氣二氧化碳" , "icon": "fa fa-cloud", "link" : "datachart/2", "bcolor" : "bg-maroon", "bcolor2" : "bg-maroon-active" },
+  { "itemCd" : "InAirCO2", "val" : "25ppm", "itemNm" : "空氣二氧化碳" , "icon": "fa fa-cloud", "link" : "datachart/2", "bcolor" : "bg-maroon", "bcolor2" : "bg-maroon-active" },
   { "itemCd" : "InSoilTemperature", "val" : "20°C", "itemNm" : "土壤溫度" , "icon": "fa fa-thermometer-full", "link" : "datachart/1", "bcolor" : "bg-blue", "bcolor2" : "bg-maroon-active" },
   { "itemCd" : "InSoilHumidity", "val" : "90", "itemNm" : "土壤濕度" , "icon": "fa fa-tint", "link" : "datachart/2", "bcolor" : "bg-olive", "bcolor2" : "bg-maroon-active" },
   { "itemCd" : "InSoilEC", "val" : "25", "itemNm" : "土壤電解質" , "icon": "fa fa-tachometer", "link" : "datachart/1", "bcolor" : "bg-yellow", "bcolor2" : "bg-maroon-active" },
@@ -89,12 +89,18 @@ router.get('/farm/info/:field_id', function(req, res, next) {
         }
       });
     }
-
   });
 });
 
 router.get('/farm/sensorRecord', function(req, res, next) {
-  res.render('farm/sensorRecord');
+    var user = req.session.user;
+    field.findAllByUserid([user.user_id], function (err, results) {
+        if (err) {
+            res.redirect('farm');
+        } else {
+            res.render('farm/sensorRecord', { title: 'farm', farmInfo: results});
+        }
+    })
 });
 
 router.get('/farm/:field_id/datachart/:type', function(req, res, next) {

@@ -26,7 +26,12 @@
         </section>
 
         <section class="content">
-
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <% farmInfo.forEach(function (farm, index) { %>
+                    <li class="active"><a href="#tab_<%=index%>" data-toggle="tab"><%= farm.field_name %></a></li>
+                    <% })%>
+                </ul>
             <div class="row">
                 <div class="col-md-12">
                     <div class="box box-primary">

@@ -79,7 +79,7 @@ router.get('/farmDetail', function(req, res, next) {
 
 
 router.get('/sensorRecord', function(req, res, next) {
-    res.render('farm/sensorRecord');
+    res.render('farm/sensorRecord', {farms : farms});
 });
 
 router.get('/:field_id/datachart/:type', function(req, res, next) {

@@ -20,12 +20,7 @@
         </section>
 
         <div class="content">
-
-            <div class="box-body ">
-                <!--<div class="alert alert-farm-success alert-dismissible">-->
-                <!--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>-->
-                <!--<h4><i class="icon fa fa-check"></i> 無警示!</h4> 目前農場環控感測正常-->
-                <!--</div>-->
+            <div class="box-body col-xs-6 col-md-9">
                 <div class="box box-danger">
                     <div class="box-header with-border bg-red">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
@@ -54,464 +49,488 @@
                                     <span class="pull-right text-red"></i> 尚未處理</span></a></li>
                         </ul>
                     </div>
+
                     <!-- /.row -->
                 </div>
             </div>
             <!-- /.box-body -->
-            <div class="content">
-                <div class="nav-tabs-custom">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a href="#tab_1" data-toggle="tab">農場環控</a></li>
-                        <li class=""><a href="#tab_2" data-toggle="tab">農場資料</a></li>
-                    </ul>
-
-
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="tab_1">
-                            <!-- Small boxes (Stat box) -->
-                            <div class="row">
-                                <% metrics.forEach(function (metric) { %>
-                                <a href="/farm/<%= farmInfo.field_id %>/datachart/<%= metric.itemCd %>"
-                                   class="small-box-footer">
-                                    <div class="col-md-3 col-xs-6 connectedSortable">
-                                        <div class="small-box <%= metric.bcolor %>">
-                                            <div class="inner">
-                                                <h1><%= metric.val %></h1>
-                                                <h4><%= metric.itemNm %></h4>
-                                            </div>
-                                            <div class="icon">
-                                                <i class="<%= metric.icon %>"></i>
-                                            </div>
-                                            <div class="text-center small-box-footer">
-                                                查看量測資料<i class="fa fa-arrow-circle-right"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <% }) %>
-                            </div>
+            <div class="box-body col-xs-6 col-md-3">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                        <div class="col-xs-6 text-center">
+                            <h4>台北市</h4>
+                            <h4>松山區</h4>
+                            <h5>2016/12/10 14:00</h5>
                         </div>
-                        <div class="tab-pane" id="tab_2">
-                            <div class="row">
-                                <section class="col-md-5 connectedSortable">
-                                    <!-- Map box -->
-                                    <div class="box box-solid bg-light-blue-gradient">
-                                        <div class="box-header">
-                                            <i class="fa fa-map-marker"></i>
-                                            <h3 class="box-title">
-                                                農場位置
-                                            </h3>
-                                        </div>
-                                        <div class="box-body">
-                                            <div id="world-map" style="height: 450px; width: 100%;"></div>
-                                        </div>
+                        <div class="col-xs-6 text-center">
+                        <i class="fa fa-cloud fa-5x"></i>
+                            <h3>25°C</h3>
+                        </div>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                        class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                                        class="fa fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab_1" data-toggle="tab">農場環控</a></li>
+                    <li class=""><a href="#tab_2" data-toggle="tab">農場資料</a></li>
+                </ul>
 
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab_1">
+                        <!-- Small boxes (Stat box) -->
+                        <div class="row">
+                            <% metrics.forEach(function (metric) { %>
+                            <a href="/farm/<%= farmInfo.field_id %>/datachart/<%= metric.itemCd %>"
+                               class="small-box-footer">
+                                <div class="col-md-3 col-xs-6 connectedSortable">
+                                    <div class="small-box <%= metric.bcolor %>">
+                                        <div class="inner">
+                                            <h1><%= metric.val %></h1>
+                                            <h4><%= metric.itemNm %></h4>
+                                        </div>
+                                        <div class="icon">
+                                            <i class="<%= metric.icon %>"></i>
+                                        </div>
+                                        <div class="text-center small-box-footer">
+                                            查看量測資料<i class="fa fa-arrow-circle-right"></i>
+                                        </div>
                                     </div>
-                                    <!-- /.box -->
-                                </section>
-                                <section class="col-md-7 connectedSortable">
-                                    <div class="box box-solid">
-                                        <div class="box-header with-border">
-                                            <i class="fa fa-text-width"></i>
-                                            <h3 class="box-title">農場基本資料</h3>
-                                        </div>
-                                        <!-- /.box-header -->
-                                        <div class="box-body">
-                                            <dl class="dl-horizontal">
-                                                <dt>農場名稱</dt>
-                                                <dd><%= farmInfo.field_name %></dd>
-                                                <dt>農場地址</dt>
-                                                <dd>農場地址農場地址農場地址農場地址農場地址</dd>
-                                                <dt>農場所有人</dt>
-                                                <dd>黃某某</dd>
-                                                <dt>栽種面積</dt>
-                                                <dd><%= farmInfo.field_area %></dd>
-                                                <dt>田地種類</dt>
-                                                <dd><%= farmInfo.field_area %></dd>
-                                                <dt>使用狀態</dt>
-                                                <dd>使用中</dd>
-                                                <dt>栽種作物</dt>
-                                                <dd><%= farmInfo.field_area %></dd>
-                                                <dt>建立時間</dt>
-                                                <dd>1981/10/29</dd>
-                                            </dl>
-                                        </div>
-                                        <!-- /.box-body -->
-
-                                        <div class="box-header with-border">
-                                            <i class="fa fa-text-width"></i>
-                                            <h3 class="box-title">農場地籍資料</h3>
-                                        </div>
-                                        <!-- /.box-header -->
-                                        <div class="box-body">
-                                            <dl class="dl-horizontal">
-                                                <dt>地籍地號(母)</dt>
-                                                <dd></dd>
-                                                <dt>地籍地號(子)</dt>
-                                                <dd></dd>
-                                                <dt>地址-省</dt>
-                                                <dd><%=field_location.fel_country%></dd>
-                                                <dt>地址-縣市</dt>
-                                                <dd><%=field_location.fel_city%></dd>
-                                                <dt>地址-鄉鎮區</dt>
-                                                <dd><%=field_location.fel_zone%></dd>
-                                                <dt>地址-段</dt>
-                                                <dd><%=field_location.fel_seg%></dd>
-                                                <dt>地址-小段</dt>
-                                                <dd></dd>
-                                                <dt>地號面積(公頃)</dt>
-                                                <dd><%=field_location.fel_area%></dd>
-                                                <dt>農地流水號</dt>
-                                                <dd></dd>
-                                                <dt>農地經緯度</dt>
-                                                <dd></dd>
-                                                <dt>使用狀態</dt>
-                                                <dd></dd>
-                                                <dt>建立日期</dt>
-                                                <dd><%=field_location.created_date%></dd>
-                                            </dl>
-                                        </div>
-                                        <!-- /.box-body -->
+                                </div>
+                            </a>
+                            <% }) %>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab_2">
+                        <div class="row">
+                            <section class="col-md-5 connectedSortable">
+                                <!-- Map box -->
+                                <div class="box box-solid bg-light-blue-gradient">
+                                    <div class="box-header">
+                                        <i class="fa fa-map-marker"></i>
+                                        <h3 class="box-title">
+                                            農場位置
+                                        </h3>
                                     </div>
-                                    <!-- /.box -->
-                                </section>
-                            </div>
-
-
-                            <div class="nav-tabs-custom">
-                                <ul class="nav nav-tabs">
-                                    <li class="active"><a href="#tab_4" data-toggle="tab">感測器列表</a></li>
-                                    <li class=""><a href="#tab_activity" data-toggle="tab">田間作業計畫</a></li>
-                                </ul>
-                                <div class="tab-content">
-
-                                    <div class="tab-pane active" id="tab_4">
-                                        <div class="box">
-                                            <!-- /.box-header -->
-                                            <div class="box-body">
-                                                <table id="example2" class="display table table-bordered table-striped">
-                                                    <thead>
-                                                    <tr>
-                                                        <th>類型</th>
-                                                        <th>感測器名稱</th>
-                                                        <th>目前感測數值</th>
-                                                        <th>狀態</th>
-                                                        <th>感測資料</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <% sensors.forEach(function (s) { %>
-
-                                                    <tr>
-                                                        <td>溫度計</td>
-                                                        <td><%=s.sensor_name%></td>
-                                                        <td>25</td>
-                                                        <td>ON</td>
-                                                        <td><a href="/farm/<%= farmInfo.field_id%>/datachart/InAirTem">前往觀看</a></td>
-                                                    </tr>
-                                                    <% })%>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <!-- /.box-body -->
-                                        </div>
-                                        <!-- /.box -->
-
-                                    </div>
-                                    <div class="tab-pane" id="tab_activity">
-                                        <div class="box">
-
-                                            <!-- /.box-header -->
-                                            <div class="box-body">
-                                                <table id="example1" class="display table table-bordered table-striped">
-                                                    <thead>
-                                                    <tr>
-                                                        <th>項目</th>
-                                                        <th>日期</th>
-                                                        <th>工作內容</th>
-                                                        <th>開始日期</th>
-                                                        <th>完成日期</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr>
-                                                        <td>Trident</td>
-                                                        <td>Internet
-                                                            Explorer 4.0
-                                                        </td>
-                                                        <td>Win 95+</td>
-                                                        <td> 4</td>
-                                                        <td>X</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Trident</td>
-                                                        <td>Internet
-                                                            Explorer 5.0
-                                                        </td>
-                                                        <td>Win 95+</td>
-                                                        <td>5</td>
-                                                        <td>C</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Trident</td>
-                                                        <td>Internet
-                                                            Explorer 5.5
-                                                        </td>
-                                                        <td>Win 95+</td>
-                                                        <td>5.5</td>
-                                                        <td>A</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Trident</td>
-                                                        <td>Internet
-                                                            Explorer 6
-                                                        </td>
-                                                        <td>Win 98+</td>
-                                                        <td>6</td>
-                                                        <td>A</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Trident</td>
-                                                        <td>Internet Explorer 7</td>
-                                                        <td>Win XP SP2+</td>
-                                                        <td>7</td>
-                                                        <td>A</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Trident</td>
-                                                        <td>Internet
-                                                            Explorer 4.0
-                                                        </td>
-                                                        <td>Win 95+</td>
-                                                        <td> 4</td>
-                                                        <td>X</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Trident</td>
-                                                        <td>Internet
-                                                            Explorer 5.0
-                                                        </td>
-                                                        <td>Win 95+</td>
-                                                        <td>5</td>
-                                                        <td>C</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Trident</td>
-                                                        <td>Internet
-                                                            Explorer 5.5
-                                                        </td>
-                                                        <td>Win 95+</td>
-                                                        <td>5.5</td>
-                                                        <td>A</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Trident</td>
-                                                        <td>Internet
-                                                            Explorer 6
-                                                        </td>
-                                                        <td>Win 98+</td>
-                                                        <td>6</td>
-                                                        <td>A</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Trident</td>
-                                                        <td>Internet Explorer 7</td>
-                                                        <td>Win XP SP2+</td>
-                                                        <td>7</td>
-                                                        <td>A</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Trident</td>
-                                                        <td>Internet
-                                                            Explorer 4.0
-                                                        </td>
-                                                        <td>Win 95+</td>
-                                                        <td> 4</td>
-                                                        <td>X</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Trident</td>
-                                                        <td>Internet
-                                                            Explorer 5.0
-                                                        </td>
-                                                        <td>Win 95+</td>
-                                                        <td>5</td>
-                                                        <td>C</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Trident</td>
-                                                        <td>Internet
-                                                            Explorer 5.5
-                                                        </td>
-                                                        <td>Win 95+</td>
-                                                        <td>5.5</td>
-                                                        <td>A</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Trident</td>
-                                                        <td>Internet
-                                                            Explorer 6
-                                                        </td>
-                                                        <td>Win 98+</td>
-                                                        <td>6</td>
-                                                        <td>A</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Trident</td>
-                                                        <td>Internet Explorer 7</td>
-                                                        <td>Win XP SP2+</td>
-                                                        <td>7</td>
-                                                        <td>A</td>
-                                                    </tr>
-                                                    </tfoot>
-                                                </table>
-                                            </div>
-                                            <!-- /.box-body -->
-                                        </div>
-                                        <!-- /.box -->
+                                    <div class="box-body">
+                                        <div id="world-map" style="height: 450px; width: 100%;"></div>
                                     </div>
 
                                 </div>
+                                <!-- /.box -->
+                            </section>
+                            <section class="col-md-7 connectedSortable">
+                                <div class="box box-solid">
+                                    <div class="box-header with-border">
+                                        <i class="fa fa-text-width"></i>
+                                        <h3 class="box-title">農場基本資料</h3>
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body">
+                                        <dl class="dl-horizontal">
+                                            <dt>農場名稱</dt>
+                                            <dd><%= farmInfo.field_name %></dd>
+                                            <dt>農場地址</dt>
+                                            <dd>農場地址農場地址農場地址農場地址農場地址</dd>
+                                            <dt>農場所有人</dt>
+                                            <dd>黃某某</dd>
+                                            <dt>栽種面積</dt>
+                                            <dd><%= farmInfo.field_area %></dd>
+                                            <dt>田地種類</dt>
+                                            <dd><%= farmInfo.field_area %></dd>
+                                            <dt>使用狀態</dt>
+                                            <dd>使用中</dd>
+                                            <dt>栽種作物</dt>
+                                            <dd><%= farmInfo.field_area %></dd>
+                                            <dt>建立時間</dt>
+                                            <dd>1981/10/29</dd>
+                                        </dl>
+                                    </div>
+                                    <!-- /.box-body -->
+
+                                    <div class="box-header with-border">
+                                        <i class="fa fa-text-width"></i>
+                                        <h3 class="box-title">農場地籍資料</h3>
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body">
+                                        <dl class="dl-horizontal">
+                                            <dt>地籍地號(母)</dt>
+                                            <dd></dd>
+                                            <dt>地籍地號(子)</dt>
+                                            <dd></dd>
+                                            <dt>地址-省</dt>
+                                            <dd><%= field_location.fel_country %></dd>
+                                            <dt>地址-縣市</dt>
+                                            <dd><%= field_location.fel_city %></dd>
+                                            <dt>地址-鄉鎮區</dt>
+                                            <dd><%= field_location.fel_zone %></dd>
+                                            <dt>地址-段</dt>
+                                            <dd><%= field_location.fel_seg %></dd>
+                                            <dt>地址-小段</dt>
+                                            <dd></dd>
+                                            <dt>地號面積(公頃)</dt>
+                                            <dd><%= field_location.fel_area %></dd>
+                                            <dt>農地流水號</dt>
+                                            <dd></dd>
+                                            <dt>農地經緯度</dt>
+                                            <dd></dd>
+                                            <dt>使用狀態</dt>
+                                            <dd></dd>
+                                            <dt>建立日期</dt>
+                                            <dd><%= field_location.created_date %></dd>
+                                        </dl>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </section>
+                        </div>
+
+
+                        <div class="nav-tabs-custom">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tab_4" data-toggle="tab">感測器列表</a></li>
+                                <li class=""><a href="#tab_activity" data-toggle="tab">田間作業計畫</a></li>
+                            </ul>
+                            <div class="tab-content">
+
+                                <div class="tab-pane active" id="tab_4">
+                                    <div class="box">
+                                        <!-- /.box-header -->
+                                        <div class="box-body">
+                                            <table id="example2" class="display table table-bordered table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>類型</th>
+                                                    <th>感測器名稱</th>
+                                                    <th>目前感測數值</th>
+                                                    <th>狀態</th>
+                                                    <th>感測資料</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <% sensors.forEach(function (s) { %>
+
+                                                <tr>
+                                                    <td>溫度計</td>
+                                                    <td><%= s.sensor_name %></td>
+                                                    <td>25</td>
+                                                    <td>ON</td>
+                                                    <td>
+                                                        <a href="/farm/<%= farmInfo.field_id %>/datachart/InAirTem">前往觀看</a>
+                                                    </td>
+                                                </tr>
+                                                <% }) %>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- /.box-body -->
+                                    </div>
+                                    <!-- /.box -->
+
+                                </div>
+                                <div class="tab-pane" id="tab_activity">
+                                    <div class="box">
+
+                                        <!-- /.box-header -->
+                                        <div class="box-body">
+                                            <table id="example1" class="display table table-bordered table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>項目</th>
+                                                    <th>日期</th>
+                                                    <th>工作內容</th>
+                                                    <th>開始日期</th>
+                                                    <th>完成日期</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>Trident</td>
+                                                    <td>Internet
+                                                        Explorer 4.0
+                                                    </td>
+                                                    <td>Win 95+</td>
+                                                    <td> 4</td>
+                                                    <td>X</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Trident</td>
+                                                    <td>Internet
+                                                        Explorer 5.0
+                                                    </td>
+                                                    <td>Win 95+</td>
+                                                    <td>5</td>
+                                                    <td>C</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Trident</td>
+                                                    <td>Internet
+                                                        Explorer 5.5
+                                                    </td>
+                                                    <td>Win 95+</td>
+                                                    <td>5.5</td>
+                                                    <td>A</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Trident</td>
+                                                    <td>Internet
+                                                        Explorer 6
+                                                    </td>
+                                                    <td>Win 98+</td>
+                                                    <td>6</td>
+                                                    <td>A</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Trident</td>
+                                                    <td>Internet Explorer 7</td>
+                                                    <td>Win XP SP2+</td>
+                                                    <td>7</td>
+                                                    <td>A</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Trident</td>
+                                                    <td>Internet
+                                                        Explorer 4.0
+                                                    </td>
+                                                    <td>Win 95+</td>
+                                                    <td> 4</td>
+                                                    <td>X</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Trident</td>
+                                                    <td>Internet
+                                                        Explorer 5.0
+                                                    </td>
+                                                    <td>Win 95+</td>
+                                                    <td>5</td>
+                                                    <td>C</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Trident</td>
+                                                    <td>Internet
+                                                        Explorer 5.5
+                                                    </td>
+                                                    <td>Win 95+</td>
+                                                    <td>5.5</td>
+                                                    <td>A</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Trident</td>
+                                                    <td>Internet
+                                                        Explorer 6
+                                                    </td>
+                                                    <td>Win 98+</td>
+                                                    <td>6</td>
+                                                    <td>A</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Trident</td>
+                                                    <td>Internet Explorer 7</td>
+                                                    <td>Win XP SP2+</td>
+                                                    <td>7</td>
+                                                    <td>A</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Trident</td>
+                                                    <td>Internet
+                                                        Explorer 4.0
+                                                    </td>
+                                                    <td>Win 95+</td>
+                                                    <td> 4</td>
+                                                    <td>X</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Trident</td>
+                                                    <td>Internet
+                                                        Explorer 5.0
+                                                    </td>
+                                                    <td>Win 95+</td>
+                                                    <td>5</td>
+                                                    <td>C</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Trident</td>
+                                                    <td>Internet
+                                                        Explorer 5.5
+                                                    </td>
+                                                    <td>Win 95+</td>
+                                                    <td>5.5</td>
+                                                    <td>A</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Trident</td>
+                                                    <td>Internet
+                                                        Explorer 6
+                                                    </td>
+                                                    <td>Win 98+</td>
+                                                    <td>6</td>
+                                                    <td>A</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Trident</td>
+                                                    <td>Internet Explorer 7</td>
+                                                    <td>Win XP SP2+</td>
+                                                    <td>7</td>
+                                                    <td>A</td>
+                                                </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                        <!-- /.box-body -->
+                                    </div>
+                                    <!-- /.box -->
+                                </div>
+
                             </div>
                         </div>
                     </div>
-
                 </div>
-
-                <!-- callout -->
-                <div class="callout callout-info">
-                    <h4>查看農場環控歷史統計資料  <a href="/farm/sensorRecord">前往<i class="fa fa-arrow-circle-right"></i></a></h4>
-                </div>
-                <!-- /.callout -->
-
 
             </div>
 
+            <!-- callout -->
+            <div class="callout callout-info">
+                <h4>查看農場環控歷史統計資料 <a href="/farm/sensorRecord">前往<i class="fa fa-arrow-circle-right"></i></a></h4>
+            </div>
+            <!-- /.callout -->
+
+
         </div>
     </div>
-</div>
 
-<% include ../includejs1.ejs %>
-<script src="/js/mapUtil.js"></script>
-<!-- page script -->
-<script>
+    <% include ../includejs1.ejs %>
+    <script src="/js/mapUtil.js"></script>
+    <!-- page script -->
+    <script>
 
-    MapUtil.initJson = {
-        "type": "FeatureCollection",
-        "features": [
-            {
-                "type": "Feature",
-                "properties": {},
-                "geometry": {
-                    "type": "Polygon",
-                    "coordinates": [
-                        [
+        MapUtil.initJson = {
+            "type": "FeatureCollection",
+            "features": [
+                {
+                    "type": "Feature",
+                    "properties": {},
+                    "geometry": {
+                        "type": "Polygon",
+                        "coordinates": [
                             [
-                                120.47331690788269,
-                                24.065200804965205
-                            ],
-                            [
-                                120.4731559753418,
-                                24.06489711908188
-                            ],
-                            [
-                                120.47298967838287,
-                                24.064294643347
-                            ],
-                            [
-                                120.47305941581727,
-                                24.06396646431742
-                            ],
-                            [
-                                120.47300577163695,
-                                24.063412966440392
-                            ],
-                            [
-                                120.47329545021056,
-                                24.063138665722672
-                            ],
-                            [
-                                120.4737138748169,
-                                24.06300151514391
-                            ],
-                            [
-                                120.47384798526762,
-                                24.063050497510293
-                            ],
-                            [
-                                120.47392845153807,
-                                24.06332969664165
-                            ],
-                            [
-                                120.47418594360353,
-                                24.06401054811647
-                            ],
-                            [
-                                120.47439515590668,
-                                24.064235865075055
-                            ],
-                            [
-                                120.47442197799681,
-                                24.064466079819702
-                            ],
-                            [
-                                120.47452390193939,
-                                24.064764868553162
-                            ],
-                            [
-                                120.47426104545592,
-                                24.064911813576646
-                            ],
-                            [
-                                120.47405719757079,
-                                24.065019573153577
-                            ],
-                            [
-                                120.47367095947266,
-                                24.065088147382678
-                            ],
-                            [
-                                120.47331690788269,
-                                24.065200804965205
+                                [
+                                    120.47331690788269,
+                                    24.065200804965205
+                                ],
+                                [
+                                    120.4731559753418,
+                                    24.06489711908188
+                                ],
+                                [
+                                    120.47298967838287,
+                                    24.064294643347
+                                ],
+                                [
+                                    120.47305941581727,
+                                    24.06396646431742
+                                ],
+                                [
+                                    120.47300577163695,
+                                    24.063412966440392
+                                ],
+                                [
+                                    120.47329545021056,
+                                    24.063138665722672
+                                ],
+                                [
+                                    120.4737138748169,
+                                    24.06300151514391
+                                ],
+                                [
+                                    120.47384798526762,
+                                    24.063050497510293
+                                ],
+                                [
+                                    120.47392845153807,
+                                    24.06332969664165
+                                ],
+                                [
+                                    120.47418594360353,
+                                    24.06401054811647
+                                ],
+                                [
+                                    120.47439515590668,
+                                    24.064235865075055
+                                ],
+                                [
+                                    120.47442197799681,
+                                    24.064466079819702
+                                ],
+                                [
+                                    120.47452390193939,
+                                    24.064764868553162
+                                ],
+                                [
+                                    120.47426104545592,
+                                    24.064911813576646
+                                ],
+                                [
+                                    120.47405719757079,
+                                    24.065019573153577
+                                ],
+                                [
+                                    120.47367095947266,
+                                    24.065088147382678
+                                ],
+                                [
+                                    120.47331690788269,
+                                    24.065200804965205
+                                ]
                             ]
                         ]
-                    ]
+                    }
                 }
-            }
-        ]
-    };
+            ]
+        };
 
-    //Make the dashboard widgets sortable Using jquery UI
-    $(".connectedSortable").sortable({
-        placeholder: "sort-highlight",
-        connectWith: ".connectedSortable",
-        handle: ".box-header, .nav-tabs",
-        forcePlaceholderSize: true,
-        zIndex: 999999
-    });
-    $(".connectedSortable .box-header, .connectedSortable .nav-tabs-custom").css("cursor", "move");
+        //Make the dashboard widgets sortable Using jquery UI
+        $(".connectedSortable").sortable({
+            placeholder: "sort-highlight",
+            connectWith: ".connectedSortable",
+            handle: ".box-header, .nav-tabs",
+            forcePlaceholderSize: true,
+            zIndex: 999999
+        });
+        $(".connectedSortable .box-header, .connectedSortable .nav-tabs-custom").css("cursor", "move");
 
-    $(function () {
-        $('#example1, #example2').DataTable({
-            "paging": true,
-            "pagingType": "full_numbers",
-            "lengthChange": true,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "oLanguage": {
-                "sLengthMenu": "顯示 _MENU_ 筆記錄",
-                "sZeroRecords": "無符合資料",
-                "sInfo": "目前記錄：_START_ 至 _END_, 總筆數：_TOTAL_",
-            }
+        $(function () {
+            $('#example1, #example2').DataTable({
+                "paging": true,
+                "pagingType": "full_numbers",
+                "lengthChange": true,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "oLanguage": {
+                    "sLengthMenu": "顯示 _MENU_ 筆記錄",
+                    "sZeroRecords": "無符合資料",
+                    "sInfo": "目前記錄：_START_ 至 _END_, 總筆數：_TOTAL_",
+                }
+            });
+
+            //$('#example1').removeClass( 'display' ).addClass('table table-striped table-bordered');
         });
 
-        //$('#example1').removeClass( 'display' ).addClass('table table-striped table-bordered');
-    });
 
-
-
-</script>
+    </script>
 </body>
 </html>
