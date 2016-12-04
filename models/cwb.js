@@ -58,7 +58,7 @@ function CWB() {
 
     this.findByTown = function(criteria, callback) {
         connection.acquire(function (err, con) {
-            con.query("select * from weather where town = ?", criteria, function(err, rows){
+            con.query("select * from weather where town = ? and obsTime = ? ", criteria, function(err, rows){
                 con.release();
                 if (err) {
                     callback(err,null);

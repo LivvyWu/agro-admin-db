@@ -146,7 +146,15 @@ router.get('/farm/info/:field_id', function (req, res, next) {
                 } else {
 
                     //觀測資料 溫度濕度//
-                    cwb.findByTown(field_location.fel_zone, function (err, obs) {
+                    var now = new Date();
+                    var obsTime = now.getFullYear() + "-"
+                        + leftpad("00", (now.getMonth() + 1)) + "-"
+                        + leftpad("00", now.getDate()) + " "
+                        + leftpad("00", now.getHours())
+                        + ":00:00.000";
+
+                    //console.log(obsTime);
+                    cwb.findByTown([field_location.fel_zone, obsTime], function (err, obs) {
                         var t = 0;
                         var h = 0;
                         var city = "";
@@ -170,9 +178,9 @@ router.get('/farm/info/:field_id', function (req, res, next) {
                                     farmInfo: field,
                                     field_location: field_location,
                                     sensors: sensors,
-                                    obsTemp: t/obs.length,//觀測溫度
-                                    obsHumd: h*100,//觀測濕度
-                                    obsTime: obsTime.getFullYear() + "-" + (obsTime.getMonth()+1) + "-" + obsTime.getDate() + " " + obsTime.getHours() + "點",
+                                    obsTemp: t / obs.length,//觀測溫度
+                                    obsHumd: h * 100,//觀測濕度
+                                    obsTime: obsTime.getFullYear() + "-" + (obsTime.getMonth() + 1) + "-" + obsTime.getDate() + " " + obsTime.getHours() + "點",
                                     showCwb: true
                                 });
                             }
@@ -208,6 +216,11 @@ router.get('/farm/:field_id/datachart/:type', function (req, res, next) {
 
 });
 
+function leftpad(pad, user_str) {
+    if (typeof user_str === 'undefined')
+        return pad;
+    return (pad + user_str).slice(-pad.length);
+}
 
 router.post('/register/submit', function (req, res, next) {
 

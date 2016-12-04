@@ -8,7 +8,7 @@ rule.hour = 1;
 
 var cwb = require('../models/cwb');
 
-cron.scheduleJob(rule, function(){
+cron.scheduleJob('0 10 * * * *', function(){
     cwb.xmlToJson(observationsUrl, function(err, data){
         if (err) {
             return console.err(err);
