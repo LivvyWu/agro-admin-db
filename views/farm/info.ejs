@@ -19,8 +19,8 @@
             </ol>
         </section>
 
-        <div class="content">
-            <div class="box-body col-xs-6 col-md-9">
+        <div class="content row farm-info">
+            <div class="box-body col-xs-12 col-sm-12">
                 <div class="box box-danger">
                     <div class="box-header with-border bg-red">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
@@ -54,32 +54,9 @@
                 </div>
             </div>
             <!-- /.box-body -->
-            <div class="box-body col-xs-6 col-md-3">
-                <div class="box">
-                    <div class="box-header with-border">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                        <div class="col-xs-6 text-center">
-                            <h4>台北市</h4>
-                            <h4>松山區</h4>
-                            <h5>2016/12/10 14:00</h5>
-                        </div>
-                        <div class="col-xs-6 text-center">
-                        <i class="fa fa-cloud fa-5x"></i>
-                            <h3>25°C</h3>
-                        </div>
-                        <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
-                                        class="fa fa-minus"></i>
-                            </button>
-                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i
-                                        class="fa fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
-        <div class="content">
+        <div class="content row farm-info">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#tab_1" data-toggle="tab">農場環控</a></li>
@@ -210,7 +187,8 @@
                                     <div class="box">
                                         <!-- /.box-header -->
                                         <div class="box-body">
-                                            <table id="example2" class="display table table-bordered table-striped">
+                                            <table id="example2"
+                                                   class="display table table-bordered table-striped">
                                                 <thead>
                                                 <tr>
                                                     <th>類型</th>
@@ -246,7 +224,8 @@
 
                                         <!-- /.box-header -->
                                         <div class="box-body">
-                                            <table id="example1" class="display table table-bordered table-striped">
+                                            <table id="example1"
+                                                   class="display table table-bordered table-striped">
                                                 <thead>
                                                 <tr>
                                                     <th>項目</th>
@@ -403,7 +382,8 @@
 
             <!-- callout -->
             <div class="callout callout-info">
-                <h4>查看農場環控歷史統計資料 <a href="/farm/sensorRecord">前往<i class="fa fa-arrow-circle-right"></i></a></h4>
+                <h4>查看農場環控歷史統計資料 <a href="/farm/sensorRecord">前往<i class="fa fa-arrow-circle-right"></i></a>
+                </h4>
             </div>
             <!-- /.callout -->
 
@@ -528,6 +508,10 @@
             });
 
             //$('#example1').removeClass( 'display' ).addClass('table table-striped table-bordered');
+            $('.sidebar-toggle').on('click', function () {
+                console.log('click');
+                $('.cwb').toggleClass('hide');
+            })
         });
 
 

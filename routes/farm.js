@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var moment = require('moment');
+var cwb = require('../models/cwb');
+var commnonCode = require('../models/commonCode');
 var farms = [
     { "FIELD_ID" : "0", "FIELD_NAME" : "中和農場 2場", "FIELD_AREA" : "0.21", "CROP_TYPE_VARIETY_ID" : " 全年小黃瓜", "PLAN_AREA_TYPE" : "錏管簡易網室" , "EQUIPMENTS": ["內循環風扇"],
         "metrics": [

@@ -12,7 +12,7 @@ var users = require('./routes/users');
 var farm = require('./routes/farm');
 var equipment = require('./routes/equipment');
 var abnormal = require('./routes/abnormal');
-
+var schedule = require('./routes/schedule');
 
 
 var connection = require('./connection');

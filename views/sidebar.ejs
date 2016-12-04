@@ -1,17 +1,16 @@
-
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar skin-blue">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
         <!-- search form -->
         <!--<form action="#" method="get" class="sidebar-form">-->
-            <!--<div class="input-group">-->
-                <!--<input type="text" name="q" class="form-control" placeholder="搜尋...">-->
-                <!--<span class="input-group-btn">-->
-                <!--<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>-->
-                <!--</button>-->
-              <!--</span>-->
-            <!--</div>-->
+        <!--<div class="input-group">-->
+        <!--<input type="text" name="q" class="form-control" placeholder="搜尋...">-->
+        <!--<span class="input-group-btn">-->
+        <!--<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>-->
+        <!--</button>-->
+        <!--</span>-->
+        <!--</div>-->
         <!--</form>-->
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -42,26 +41,120 @@
                 </ul>
             </li>
             <li class="treeview">
-            <a href="/farm/abnormal">
-            <i class="fa fa-calendar-check-o"></i> <span>示警</span>
-            <span class="pull-right-container">
+                <a href="/farm/abnormal">
+                    <i class="fa fa-calendar-check-o"></i> <span>示警</span>
+                    <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
             </span>
-            </a>
+                </a>
                 <ul class="treeview-menu">
                     <li class="active"><a href="/abnormal/"><i class="fa fa-circle-o"></i>示警紀錄</a></li>
                 </ul>
             </li>
+
+            <% if (typeof showCwb != 'undefined') { %>
+            <div class="box-body cwb">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+
+                        <p>
+                            <%= field_location.fel_city %><%= field_location.fel_zone %>
+                        </p>
+
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                        class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                                        class="fa fa-times"></i>
+                            </button>
+                        </div>
+
+                        <div class="">
+                            <% if (typeof obsTime == 'undefined') { %>
+                            <p>N/A</p>
+                            <% } else { %>
+                            <p><%= obsTime %></p>
+                            <% } %>
+                        </div>
+                        <div class="col-xs-12 current">
+                            <div class="">
+                                <i class="weather wi wi-day-sunny wi-3x m-r-1"></i>
+                            </div>
+                            <div class="">
+                                <p><i class="wi wi-thermometer wi-1x m-r-1"></i>
+                                    <%= obsTemp %>°C
+                                </p>
+                                <p><i class="wi wi-humidity wi-1x m-r-1"></i>
+                                    <%= obsHumd %>%
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box-body forecast">
+                        <div class="col-xs-4 text-center">
+                            <div class="inner">
+                                <p>星期二</p>
+                                <i class="wi wi-day-cloudy wi-1x"></i>
+                                <p>25°-30°</p>
+                                <p><i class="wi wi-umbrella wi-s"></i>78%</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 text-center">
+                            <div class="inner">
+                                <p>星期三</p>
+                                <i class="wi wi-cloud wi-1x"></i>
+                                <p>25°-30°</p>
+                                <p><i class="wi wi-umbrella wi-1x"></i>78%</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 text-center">
+                            <div class="inner">
+                                <p>星期四</p>
+                                <i class="wi wi-hail wi-1x"></i>
+                                <p>25°-30°</p>
+                                <p><i class="wi wi-umbrella wi-s"></i>78%</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 text-center">
+                            <div class="inner">
+                                <p>星期五</p>
+                                <i class="wi wi-cloud wi-1x"></i>
+                                <p>25°-30°</p>
+                                <p><i class="wi wi-umbrella wi-s"></i>78%</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 text-center">
+                            <div class="inner">
+                                <p>星期六</p>
+                                <i class="wi wi-day-sunny wi-1x"></i>
+                                <p>25°-30°</p>
+                                <p><i class="wi wi-umbrella wi-s"></i>78%</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 text-center">
+                            <div class="inner">
+                                <p>星期日</p>
+                                <i class="wi wi-day-cloudy wi-1x"></i>
+                                <p>25°-30°</p>
+                                <p><i class="wi wi-umbrella wi-s"></i>78%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+
             <!--<li class="treeview">-->
-                <!--<a href="/calendar">-->
-                    <!--<i class="fa fa-calendar-check-o"></i> <span>行事曆</span>-->
-                    <!--<span class="pull-right-container">-->
-                        <!--<i class="fa fa-angle-left pull-right"></i>-->
-                    <!--</span>-->
-                <!--</a>-->
+            <!--<a href="/calendar">-->
+            <!--<i class="fa fa-calendar-check-o"></i> <span>行事曆</span>-->
+            <!--<span class="pull-right-container">-->
+            <!--<i class="fa fa-angle-left pull-right"></i>-->
+            <!--</span>-->
+            <!--</a>-->
             <!--</li>-->
-
-
 
 
         </ul>
