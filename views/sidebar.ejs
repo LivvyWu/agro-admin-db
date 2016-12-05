@@ -52,14 +52,13 @@
                 </ul>
             </li>
 
-            <% if (typeof showCwb != 'undefined') { %>
             <div class="box-body cwb">
                 <div class="box">
                     <div class="box-header with-border">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
 
                         <p>
-                            <%= field_location.fel_city %><%= field_location.fel_zone %>
+                            南投縣 埔里鎮
                         </p>
 
                         <div class="box-tools pull-right">
@@ -72,11 +71,7 @@
                         </div>
 
                         <div class="">
-                            <% if (typeof obsTime == 'undefined') { %>
-                            <p>N/A</p>
-                            <% } else { %>
-                            <p><%= obsTime %></p>
-                            <% } %>
+                            2016-12-06 15:00
                         </div>
                         <div class="col-xs-12 current">
                             <div class="">
@@ -84,10 +79,10 @@
                             </div>
                             <div class="">
                                 <p><i class="wi wi-thermometer wi-1x m-r-1"></i>
-                                    <%= obsTemp %>°C
+                                    20°C
                                 </p>
                                 <p><i class="wi wi-humidity wi-1x m-r-1"></i>
-                                    <%= obsHumd %>%
+                                    88%
                                 </p>
                             </div>
                         </div>
@@ -145,7 +140,6 @@
                     </div>
                 </div>
             </div>
-            <% } %>
 
             <!--<li class="treeview">-->
             <!--<a href="/calendar">-->

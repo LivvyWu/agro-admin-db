@@ -35,7 +35,7 @@ function CWB() {
     this.create = function (criteria) {
         connection.acquire(function (err, con) {
 
-            con.query("insert into weather(id, city, city_sn, town, town_sn, lat, lon, elev, wdir, wdsd, temp, humd, pres, sun, h_24r, ws15m, wd15m, ws15t, obsTime, updated_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", criteria,
+            con.query("insert into cwb_obs(id, city, city_sn, town, town_sn, lat, lon, elev, wdir, wdsd, temp, humd, pres, sun, h_24r, ws15m, wd15m, ws15t, obsTime, updated_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", criteria,
                 function (err, result) {
                     con.release();
                     if (err) {
@@ -52,13 +52,13 @@ function CWB() {
 
     this.empty = function () {
         connection.acquire(function (err, con) {
-            con.query("delete from weather where 1=1");
+            con.query("delete from cwb_obs where 1=1");
         });
     };
 
     this.findByTown = function(criteria, callback) {
         connection.acquire(function (err, con) {
-            con.query("select * from weather where town = ? and obsTime = ? ", criteria, function(err, rows){
+            con.query("select * from cwb_obs where town = ? and obsTime = ? ", criteria, function(err, rows){
                 con.release();
                 if (err) {
                     callback(err,null);
