@@ -7,8 +7,9 @@ function Connection() {
         this.pool = mysql.createPool({
             connectionLimit: 10,
             host: 'localhost',
+            port: '3308',
             user: 'root',
-            password: '',
+            password: 'rootpswd',
             database: 'agrodb'
         });
     };

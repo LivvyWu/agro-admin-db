@@ -43,7 +43,7 @@
 .cwb .box .box-header p{
     color: #fff;
 }
-.cwb .current {
+.cwb .current, .cwb2 .current {
     display: -webkit-flex;
     display: flex;
     -webkit-justify-content: center;
