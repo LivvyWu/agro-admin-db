@@ -43,7 +43,7 @@
 .cwb .box .box-header p{
     color: #fff;
 }
-.cwb .current {
+.cwb .current,.cwb2 .current {
     display: -webkit-flex;
     display: flex;
     -webkit-justify-content: center;
@@ -105,4 +105,24 @@
 
 .wi-hail {
     color: #00c0ef;
+}
+
+.lineDots {
+    fill: #FF3757;
+    stroke: #FF3757;
+    stroke-width: 6px;
+    stroke-opacity: 0.2;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #C4C4C4;
+    shape-rendering: crispEdges;
+}
+
+.line {
+    stroke: #FF3757;
+    stroke-width: 1.5px;
+    fill: none;
 }
