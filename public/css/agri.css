@@ -43,11 +43,7 @@
 .cwb .box .box-header p{
     color: #fff;
 }
-<<<<<<< HEAD
 .cwb .current,.cwb2 .current {
-=======
-.cwb .current, .cwb2 .current {
->>>>>>> origin/master
     display: -webkit-flex;
     display: flex;
     -webkit-justify-content: center;

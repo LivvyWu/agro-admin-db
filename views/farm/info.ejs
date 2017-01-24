@@ -20,7 +20,7 @@
         </section>
 
         <div class="content row farm-info">
-            <div class="box-body col-xs-6">
+            <div class="box-body col-xs-12">
                 <div class="box box-danger">
                     <div class="box-header with-border bg-red">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
@@ -54,93 +54,6 @@
                 </div>
             </div>
             <!-- /.box-body -->
-            <div class="box-body col-xs-6 cwb2">
-                <div class="box">
-                    <div class="box-header with-border">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                        <p>
-                            南投縣 埔里鎮
-                        </p>
-
-                        <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
-                                        class="fa fa-minus"></i>
-                            </button>
-                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i
-                                        class="fa fa-times"></i>
-                            </button>
-                        </div>
-
-                        <div class="">
-                            2016-12-06 15:00
-                        </div>
-                        <div class="col-xs-12 current">
-                            <div class="">
-                                <i class="weather wi wi-day-sunny wi-3x m-r-1"></i>
-                            </div>
-                            <div class="">
-                                <p><i class="wi wi-thermometer wi-1x m-r-1"></i>
-                                    20°C
-                                </p>
-                                <p><i class="wi wi-humidity wi-1x m-r-1"></i>
-                                    88%
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="box-body forecast">
-                        <div class="col-xs-4 text-center">
-                            <div class="inner">
-                                <p>星期二</p>
-                                <i class="wi wi-day-cloudy wi-1x"></i>
-                                <p>25°-30°</p>
-                                <p><i class="wi wi-umbrella wi-s"></i>78%</p>
-                            </div>
-                        </div>
-                        <div class="col-xs-4 text-center">
-                            <div class="inner">
-                                <p>星期三</p>
-                                <i class="wi wi-cloud wi-1x"></i>
-                                <p>25°-30°</p>
-                                <p><i class="wi wi-umbrella wi-1x"></i>78%</p>
-                            </div>
-                        </div>
-                        <div class="col-xs-4 text-center">
-                            <div class="inner">
-                                <p>星期四</p>
-                                <i class="wi wi-hail wi-1x"></i>
-                                <p>25°-30°</p>
-                                <p><i class="wi wi-umbrella wi-s"></i>78%</p>
-                            </div>
-                        </div>
-                        <div class="col-xs-4 text-center">
-                            <div class="inner">
-                                <p>星期五</p>
-                                <i class="wi wi-cloud wi-1x"></i>
-                                <p>25°-30°</p>
-                                <p><i class="wi wi-umbrella wi-s"></i>78%</p>
-                            </div>
-                        </div>
-                        <div class="col-xs-4 text-center">
-                            <div class="inner">
-                                <p>星期六</p>
-                                <i class="wi wi-day-sunny wi-1x"></i>
-                                <p>25°-30°</p>
-                                <p><i class="wi wi-umbrella wi-s"></i>78%</p>
-                            </div>
-                        </div>
-                        <div class="col-xs-4 text-center">
-                            <div class="inner">
-                                <p>星期日</p>
-                                <i class="wi wi-day-cloudy wi-1x"></i>
-                                <p>25°-30°</p>
-                                <p><i class="wi wi-umbrella wi-s"></i>78%</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <div class="content row farm-info">
@@ -508,7 +421,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="box-body forecast">
                         <div class="col-xs-4 col-sm-2 text-center">
                             <div class="inner">
@@ -559,7 +471,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="chart"></div>
+                    <div id="chart" class="chart"></div>
                 </div>
             </div>
 
@@ -666,6 +578,166 @@
         });
         $(".connectedSortable .box-header, .connectedSortable .nav-tabs-custom").css("cursor", "move");
 
+        ///////////////////////////////////////////////////
+        /////////////// Create the data ///////////////////
+        ///////////////////////////////////////////////////
+
+
+        //Completely random dataset
+        var dataset = [
+            {date: "2017-01-01 06:00:00", number: 23},
+            {date: "2017-01-01 18:00:00", number: 24},
+            {date: "2017-01-02 06:00:00", number: 25},
+            {date: "2017-01-02 18:00:00", number: 26},
+            {date: "2017-01-03 06:00:00", number: 27},
+            {date: "2017-01-03 18:00:00", number: 28},
+            {date: "2017-01-04 06:00:00", number: 27},
+            {date: "2017-01-04 18:00:00", number: 26},
+            {date: "2017-01-05 06:00:00", number: 24},
+            {date: "2017-01-05 18:00:00", number: 25},
+            {date: "2017-01-06 06:00:00", number: 22},
+            {date: "2017-01-06 18:00:00", number: 26},
+            {date: "2017-01-07 06:00:00", number: 22},
+            {date: "2017-01-07 18:00:00", number: 24}
+        ]
+        //Parse the date
+        var parseDate = d3.timeParse("%Y-%m-%d %H:%M:%S");
+        dataset.forEach(function (d) {
+            d.date = parseDate(d.date);
+        });
+        ///////////////////////////////////////////////////
+        //////////////// Set the Scales ///////////////////
+        ///////////////////////////////////////////////////
+        //Set the dimensions of the chart
+        var margin = {top: 30, right: 30, bottom: 30, left: 30},
+            width = 0, // width gets defined below
+            height = 150 - margin.top - margin.bottom;
+
+        //Set the x and y scale ranges
+        var xScale = d3.scaleTime()
+            .domain(d3.extent(dataset, function (d) {
+                return d.date;
+            }));
+        var yScale = d3.scaleLinear()
+            .domain(d3.extent(dataset, function (d) {
+                return d.number-2;
+            }))
+            .range([height, 2]);
+        //Define the axes
+        var xAxis = d3.axisBottom(xScale);
+        //            var yAxis = d3.svg.axis()
+        //                .scale(yScale)
+        //                .orient("left")
+        //                .ticks(5);
+
+
+        //Initiate the line function
+        var line = d3.line();
+
+        //Initiate the area line function
+        var area = d3.area();
+
+        ///////////////////////////////////////////////////
+        ////////////// Initialize the SVG /////////////////
+        ///////////////////////////////////////////////////
+
+        //Add the svg canvas for the line chart
+        var svg = d3.select("#chart")
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        ///////////////////////////////////////////////////
+        ///////////// Create the gradient /////////////////
+        ///////////////////////////////////////////////////
+
+        //Define the gradient below the line chart
+        var areaGradient = svg.append('defs')
+            .append("linearGradient")
+            .attr('id', 'areaGradient')
+            .attr("x1", "0%").attr("y1", "0%")
+            .attr("x2", "0%").attr("y2", "100%");
+
+        //Append the first stop - the color at the top
+        areaGradient.append("stop")
+            .attr("offset", "0%")
+            .attr("stop-color", "#FC8986")
+            .attr("stop-opacity", 0.6);
+        //Append the second stop - white transparant almost at the end
+        areaGradient.append("stop")
+            .attr("offset", "80%")
+            .attr("stop-color", "white")
+            .attr("stop-opacity", 0);
+        ///////////////////////////////////////////////////
+        /////////////// Create the chart //////////////////
+        ///////////////////////////////////////////////////
+
+        //Add the X Axis
+        var xAxisEl = svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+        //Add the Y Axis
+        svg.append("g")
+            .attr("class", "y axis")
+            .call(d3.axisLeft(yScale));
+        //Draw the underlying area chart filled with the gradient
+        areaPath = svg.append("path")
+            .attr("class", "area")
+            .style("fill", "url(#areaGradient)");
+
+        //Draw the line
+        linePath = svg.append("path")
+            .attr("class", "line");
+
+        lineDot = svg.selectAll(".lineDots")
+            .data(dataset, function (d) {
+                return d.date;
+            })
+            .enter().append("circle")
+            .attr("class", "lineDots")
+            .attr("r", 3)
+            .attr("cy", function (d) {
+                return yScale(d.number);
+            })
+//            .attr("cx", function (d) {
+//                return xScale(d.number);
+//            });
+
+        function drawChart() {
+            width = parseInt(d3.select('#chart').style('width'), 0) - margin.left - margin.right;
+            // set the svg dimensions
+            svg.attr("width", width + margin.left + margin.right);
+            // Set new range for xScale
+            xScale.range([0, width]);
+            // draw the new xAxis
+            xAxisEl.call(xAxis);
+
+            line.x(function (d) {
+                return xScale(d.date);
+            })
+                .y(function (d) {
+                    return yScale(d.number);
+                });
+            area.x(function (d) {
+                return xScale(d.date);
+            })
+                .y0(height)
+                .y1(function (d) {
+                    return yScale(d.number);
+                });
+
+            areaPath.attr("d", area(dataset));
+            linePath.attr("d", line(dataset));
+            lineDot.attr("cx", function (d) {
+                return xScale(d.date);
+            })
+
+        }
+
+
+        window.addEventListener('resize', drawChart);
+
         $(function () {
             $('#example1, #example2').DataTable({
                 "paging": true,
@@ -688,144 +760,7 @@
                 $('.cwb').toggleClass('hide');
             })
 
-            ///////////////////////////////////////////////////
-/////////////// Create the data ///////////////////
-///////////////////////////////////////////////////
-
-//Completely random dataset
-            var dataset = [
-                {date: "2017-01-01 06:00:00", number: 23},
-                {date: "2017-01-01 18:00:00", number: 24},
-                {date: "2017-01-02 06:00:00", number: 25},
-                {date: "2017-01-02 18:00:00", number: 26},
-                {date: "2017-01-03 06:00:00", number: 27},
-                {date: "2017-01-03 18:00:00", number: 28},
-                {date: "2017-01-04 06:00:00", number: 27},
-                {date: "2017-01-04 18:00:00", number: 26},
-                {date: "2017-01-05 06:00:00", number: 27},
-                {date: "2017-01-05 18:00:00", number: 25},
-                {date: "2017-01-06 06:00:00", number: 22},
-                {date: "2017-01-06 18:00:00", number: 26},
-                {date: "2017-01-07 06:00:00", number: 19},
-                {date: "2017-01-07 18:00:00", number: 20}
-            ]
-//Parse the date
-            var parseDate = d3.timeParse("%Y-%m-%d %H:%M:%S");
-            dataset.forEach(function (d) {
-                d.date = parseDate(d.date);
-            });
-///////////////////////////////////////////////////
-//////////////// Set the Scales ///////////////////
-///////////////////////////////////////////////////
-//Set the dimensions of the chart
-            var margin = {top: 30, right: 30, bottom: 30, left: 50},
-                width = 900 - margin.left - margin.right,
-                height = 400 - margin.top - margin.bottom;
-//Set the x and y scale ranges
-            var xScale = d3.scaleTime()
-                .domain(d3.extent(dataset, function (d) {
-                    return d.date;
-                }))
-                .range([0, width]);
-
-            var yScale = d3.scaleLinear()
-                .domain(d3.extent(dataset, function (d) {
-                    return d.number;
-                }))
-                .range([height, 10]);
-//Define the axes
-            var xAxis = d3.axisBottom(xScale);
-//            var yAxis = d3.svg.axis()
-//                .scale(yScale)
-//                .orient("left")
-//                .ticks(5);
-
-//Initiate the line function
-            var lineFunction = d3.line()
-                .x(function (d) {
-                    return xScale(d.date);
-                })
-                .y(function (d) {
-                    return yScale(d.number);
-                });
-//Initiate the area line function
-            var areaFunction = d3.area()
-                .x(function (d) {
-                    return xScale(d.date);
-                })
-                .y0(height)
-                .y1(function (d) {
-                    return yScale(d.number);
-                });
-///////////////////////////////////////////////////
-////////////// Initialize the SVG /////////////////
-///////////////////////////////////////////////////
-
-//Add the svg canvas for the line chart
-            var svg = d3.select("#chart")
-                .append("svg")
-                .attr("width", width + margin.left + margin.right)
-                .attr("height", height + margin.top + margin.bottom)
-                .append("g")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-///////////////////////////////////////////////////
-///////////// Create the gradient /////////////////
-///////////////////////////////////////////////////
-
-//Define the gradient below the line chart
-            var areaGradient = svg.append('defs')
-                .append("linearGradient")
-                .attr('id', 'areaGradient')
-                .attr("x1", "0%").attr("y1", "0%")
-                .attr("x2", "0%").attr("y2", "100%");
-
-//Append the first stop - the color at the top
-            areaGradient.append("stop")
-                .attr("offset", "0%")
-                .attr("stop-color", "#FF3757")
-                .attr("stop-opacity", 0.6);
-//Append the second stop - white transparant almost at the end
-            areaGradient.append("stop")
-                .attr("offset", "80%")
-                .attr("stop-color", "white")
-                .attr("stop-opacity", 0);
-///////////////////////////////////////////////////
-/////////////// Create the chart //////////////////
-///////////////////////////////////////////////////
-
-//Add the X Axis
-            svg.append("g")
-                .attr("class", "x axis")
-                .attr("transform", "translate(0," + height + ")")
-                .call(xAxis);
-//Add the Y Axis
-            svg.append("g")
-                .attr("class", "y axis")
-                .call(d3.axisLeft(yScale));
-//Draw the underlying area chart filled with the gradient
-            svg.append("path")
-                .attr("class", "area")
-                .style("fill", "url(#areaGradient)")
-                .attr("d", areaFunction(dataset));
-//Draw the line
-            svg.append("path")
-                .attr("class", "line")
-                .attr("d", lineFunction(dataset));
-
-            svg.selectAll(".lineDots")
-                .data(dataset, function (d) {
-                    return d.date;
-                })
-                .enter().append("circle")
-                .attr("class", "lineDots")
-                .attr("r", 3)
-                .attr("cx", function (d) {
-                    return xScale(d.date);
-                })
-                .attr("cy", function (d) {
-                    return yScale(d.number);
-                });
-
+            drawChart();
 
         });
 
